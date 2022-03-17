@@ -50,6 +50,10 @@
                 background-size: cover;
                 background-position: center;
                 flex: 1;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
             }
 
             .panel1 {
@@ -73,8 +77,22 @@
                 margin: 0;
                 width: 100%;
                 transition: transform 0.5s;
+                flex: 1 auto;
+                display: flex;
+                justify-content: center;
             }
-
+            .panel > *:first-child {
+                transform: translate(-100%);
+            }
+            .panel.open.active > *:first-child {
+                transform: translateY(0);
+            }
+            .panel > *:last-child {
+                transform: translate(-100%);
+            }
+            .panel.open-active > *:last-child {
+                transform: translateY(0);
+            }
             .panel p {
                 text-transform: uppercase;
                 font-family: 'Amatic SC', cursive;
@@ -88,38 +106,47 @@
             }
 
             .panel.open {
+                flex: 5;
                 font-size: 40px;
             }
         </style>
 
         <div class="panels">
-            <div class="panel panel1">
+            <div class="panel panel1 open-active">
                 <p>Hey</p>
                 <p>Let's</p>
                 <p>Dance</p>
             </div>
-            <div class="panel panel2">
+            <div class="panel panel2 open-active">
                 <p>Give</p>
                 <p>Take</p>
                 <p>Receive</p>
             </div>
-            <div class="panel panel3">
+            <div class="panel panel3 open-active">
                 <p>Experience</p>
                 <p>It</p>
                 <p>Today</p>
             </div>
-            <div class="panel panel4">
+            <div class="panel panel4 open-active">
                 <p>Give</p>
                 <p>All</p>
                 <p>You can</p>
             </div>
-            <div class="panel panel5">
+            <div class="panel panel5 open-active">
                 <p>Life</p>
                 <p>In</p>
                 <p>Motion</p>
             </div>
         </div>
 
-        <script></script>
+        <script>
+            const panels = document.querySelectorAll('panel');
+            function toggleOpen() {
+                this.classList.toggle('open');
+            }
+            panels.forEach((panel) =>
+                panel.addEventListener('click', toggleOpen)
+            );
+        </script>
     </body>
 </html>
